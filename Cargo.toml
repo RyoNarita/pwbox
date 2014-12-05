@@ -2,7 +2,7 @@
 
 name = "pwbox"
 version = "0.0.1"
-authors = ["Ryo Narita <narita.ryo@smart2j.com>"]
+authors = ["Ryo Narita <info@codedoc.net>"]
 
 [dependencies.sqlite3]
 
