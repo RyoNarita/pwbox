@@ -1,0 +1,5 @@
+[package]
+
+name = "pwbox"
+version = "0.0.1"
+authors = ["Ryo Narita <narita.ryo@smart2j.com>"]
