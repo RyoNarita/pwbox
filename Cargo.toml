@@ -3,3 +3,7 @@
 name = "pwbox"
 version = "0.0.1"
 authors = ["Ryo Narita <narita.ryo@smart2j.com>"]
+
+[dependencies.sqlite3]
+
+git = "https://github.com/linuxfood/rustsqlite.git"
