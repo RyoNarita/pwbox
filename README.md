@@ -8,4 +8,4 @@
     pwbox get <ID>
 
 ## TODO
-Encryption password when save it
+Update password, List output
