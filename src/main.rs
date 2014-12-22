@@ -1,3 +1,4 @@
+#![feature(globs)]
 extern crate "sqlite3" as sqlite;
 
 use std::os;
@@ -5,13 +6,14 @@ use std::io;
 use std::io::fs;
 use std::io::fs::{PathExtensions};
 use sqlite::{open, database};
+use sqlite::types::ResultCode::*;
 
 fn main() {
 
   let mut args = os::args();
   if args.len() < 2 {
     println!("You can 2 oparations.");
-    println!("get <id> OR set <id> <password>")
+    println!("get <id> OR set <id> <password>");
     return;
   }
 
@@ -33,6 +35,12 @@ fn main() {
         return;
       }
       get_pass(&mut database, args[2].as_slice())
+    },
+    "list" => {
+      show_ids(&mut database);
+    },
+    "update" => {
+      println!("update");
     },
     _ => return,
   }
@@ -83,6 +91,21 @@ fn make_table(db:&mut database::Database) {
   match db.exec("create table pwbox ( id text, pass text );") {
     Ok(..) => {},
     Err(x) => panic!(":( sqlite error: {} {}", db.get_errmsg(), x),
+  }
+}
+
+fn show_ids(db:&mut database::Database) {
+  let mut co = match db.prepare("SELECT * FROM pwbox;", &None) {
+    Ok(s) => s,
+    Err(err) => panic!(":( sqlite error {}", db.get_errmsg()),
+  };
+  while co.step() == SQLITE_ROW {
+    {
+      print!("id:{} ", co.get_text(0).unwrap());
+    }
+    {
+      println!("pass:{} ", co.get_text(1).unwrap());
+    }
   }
 }
 
