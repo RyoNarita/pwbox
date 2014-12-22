@@ -3,9 +3,17 @@
 
 ## Usage
 
-    pwbox set <ID> <PASSWORD>
+Set password with unique ID.
+
+    pwbox set <ID> '<PASSWORD>'
+
+Get password use ID.
 
     pwbox get <ID>
 
+Show ID/PASS list.
+
+    pwbox list
+
 ## TODO
-Update password, List output
+Update password
