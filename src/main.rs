@@ -83,14 +83,14 @@ fn get_pass(db:&mut database::Database, id: &str) {
 fn set_pass(db:&mut database::Database, id: &str, pass: &str) {
   match db.exec( format!("insert into pwbox (id, pass) values ('{}', '{}')", id, pass).as_slice() ) {
     Ok(..) => println!(":) Successed password save to my pwbox!"),
-    Err(x) => panic!(":( sqlite error: {} {}", db.get_errmsg(), x),
+    Err(x) => panic!(":( sqlite error: {}", db.get_errmsg()),
   }
 }
 
 fn make_table(db:&mut database::Database) {
   match db.exec("create table pwbox ( id text, pass text );") {
     Ok(..) => {},
-    Err(x) => panic!(":( sqlite error: {} {}", db.get_errmsg(), x),
+    Err(x) => panic!(":( sqlite error: {}", db.get_errmsg()),
   }
 }
 
